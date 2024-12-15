@@ -1,0 +1,34 @@
+name: Go
+
+on:
+  push:
+    branches:
+    - "main"
+    - "develop"
+  pull_request:
+    branches:
+    - "main"
+    - "develop"
+
+jobs:
+
+  codestyle:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: codestyle
+      run: golint .
+
+  test:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: test
+      run: go test -v ./...
+
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: build
+      run: go build -v ./...
