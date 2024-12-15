@@ -17,8 +17,9 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - name: install golint
-      run: go install golang.org/x/lint/golint@latest
-           echo "$HOME/go/bin" >> $GITHUB_PATH
+      run: |
+        go install golang.org/x/lint/golint@latest
+        echo "$HOME/go/bin" >> $GITHUB_PATH
     - name: codestyle
       run: golint .
 
